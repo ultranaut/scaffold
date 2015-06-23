@@ -30,7 +30,8 @@
     "gulp-babel": "^5.1.0",
     "gulp-eslint": "^0.14.0",
     "gulp-mocha": "^2.1.2",
-    "gulp-plumber": "^1.0.1"
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2"
   },
   "directories": {
     "test": "test"

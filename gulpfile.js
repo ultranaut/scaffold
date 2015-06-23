@@ -6,6 +6,7 @@ var del = require('del');
 var lint = require('gulp-eslint');
 var mocha = require('gulp-mocha');
 var plumber = require('gulp-plumber');
+var rename = require('gulp-rename');
 
 // necessary for gulp-mocha to work with es6
 require('babel/register');
@@ -36,6 +37,7 @@ gulp.task('build', ['clean', 'lint', 'test'], function () {
   return gulp.src(srcJS)
     .pipe(plumber())
     .pipe(babel())
+    .pipe(rename('index.js'))
     .pipe(gulp.dest('./'));
 });
 
