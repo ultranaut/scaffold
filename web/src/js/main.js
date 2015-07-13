@@ -1,4 +1,3 @@
-/* eslint no-use-before-define: 0 */
 'use strict';
 
 document.addEventListener('DOMContentLoaded', function () {
