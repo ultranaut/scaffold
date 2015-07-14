@@ -8,7 +8,7 @@ var lint = require('gulp-eslint');
 
 var paths = {
   src: './src',
-  html: this.src + '/*.html',
+  html: './src/*.html',
   js: './src/js/*.js'
 };
 
@@ -34,9 +34,17 @@ gulp.task('js', function () {
       .pipe(connect.reload());
 });
 
+gulp.task('css', function () {
+  return gulp.src(paths.css)
+    .pipe(plumber())
+    .pipe(connect.reload());
+});
+
+
 gulp.task('watch', function () {
   gulp.watch([paths.html], ['html']);
   gulp.watch([paths.js], ['js']);
+  gulp.watch([paths.css], ['css']);
 });
 
-gulp.task('default', ['connect', 'html', 'js', 'watch']);
+gulp.task('default', ['connect', 'html', 'js', 'css', 'watch']);
