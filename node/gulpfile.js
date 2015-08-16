@@ -11,7 +11,14 @@ var rename = require('gulp-rename');
 // necessary for gulp-mocha to work with es6
 require('babel/register');
 
-var srcJS = './src/foo.js';
+var config = {
+  js: {
+    src: './src/*.js'
+  },
+  test: {
+    src: './test/*.spec.js'
+  }
+};
 
 // Tasks
 // ---------------------------------------------------------
@@ -20,7 +27,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('lint', function () {
-  return gulp.src(srcJS)
+  return gulp.src(config.js.src)
     .pipe(plumber())
     .pipe(lint())
     .pipe(lint.format())
@@ -28,13 +35,13 @@ gulp.task('lint', function () {
 });
 
 gulp.task('test', function () {
-  return gulp.src('test/*.spec.js')
+  return gulp.src(config.test.src)
     .pipe(plumber())
     .pipe(mocha());
 });
 
 gulp.task('build', ['clean', 'lint', 'test'], function () {
-  return gulp.src(srcJS)
+  return gulp.src(config.js.src)
     .pipe(plumber())
     .pipe(babel())
     .pipe(rename('index.js'))
@@ -42,7 +49,7 @@ gulp.task('build', ['clean', 'lint', 'test'], function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(srcJS, ['lint', 'test']);
+  gulp.watch(config.js.src, ['lint', 'test']);
 });
 
 // default task
